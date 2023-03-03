@@ -11,7 +11,8 @@ let authControllerObj = {};
 authControllerObj.signInUi = async function (req, res, next) {
   if (req.session && req.session.userToken) {
     let sideBarData = await commonController.commonSideBarData(req);
-    res.render("home/dashboard.ejs", { sidebarDataByServer: sideBarData});
+    console.log('hi i am in');
+    res.render("home/dashboard", { sidebarDataByServer: sideBarData});
   } else {
     res.render("home/signIn");
   }
