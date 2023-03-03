@@ -169,7 +169,7 @@ offersControllerObject.addNewOffer = async (req, res) => {
 };
 
 offersControllerObject.updateAnyExistingOffer = async (req, res) => {
-  const { name, desc, sequence, status, share_link } = req.body;
+  const { name, desc, sequence, status, share_link,category_id } = req.body;
   const id = req.params.id;
   const common = [id, name, desc, sequence, status, share_link];
   let resAfterAddingToDB;
@@ -191,25 +191,25 @@ offersControllerObject.updateAnyExistingOffer = async (req, res) => {
           offersModel.updateAnyExistingDataQuery(...common, {
             img: resArr[0].Location,
             logo: resArr[1].Location,
-          })
+          },category_id)
         );
       } else if (req.files.img) {
         let resp = await uploadObject.uploadToS3(req.files.img[0].buffer);
         resAfterAddingToDB = await pool.query(
           offersModel.updateAnyExistingDataQuery(...common, {
             img: resp.Location,
-          })
+          },category_id)
         );
       } else if (req.files.logo) {
         let resp = await uploadObject.uploadToS3(req.files.logo[0].buffer);
         resAfterAddingToDB = await pool.query(
           offersModel.updateAnyExistingDataQuery(...common, {
             logo: resp.Location,
-          })
+          },category_id)
         );
       }
       resAfterAddingToDB = await pool.query(
-        offersModel.updateAnyExistingDataQuery(...common)
+        offersModel.updateAnyExistingDataQuery(...common,{},category_id)
       );
       return res.status(201).json({
         payload: resAfterAddingToDB,

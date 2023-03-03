@@ -71,6 +71,7 @@ function editOffer() {
   form.append("share_link", share_link);
   form.append("img", offer_img);
   form.append("logo", logo);
+  form.append('category_id',category);
 
   fetch("/offers/updateAnyExistingOffer/"+id, {
     method: "PATCH",
@@ -98,7 +99,7 @@ function showPreview2OnLoad(src) {
   preview.style.display = "block";
 }
 
-function appendDataToInputs(name, desc, sequence, status,logo, img,share_link,category) {
+function appendDataToInputs(name, desc, sequence, status,logo, img,share_link,of_private_status,category) {
   const cat_name = document.querySelector("#name");
   const cat_desc = document.querySelector("#desc");
   const cat_sequence = document.querySelector("#sequence");

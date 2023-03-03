@@ -59,9 +59,10 @@ offersModel.updateAnyExistingDataQuery = (
   sequence,
   status,
   share_link,
-  images_object
+  images_object,
+  category_id
 ) => {
-  console.log(id,name,desc,sequence,status,share_link)
+  console.log(category_id)
   if (images_object?.img && images_object?.logo) {
     return `
   UPDATE public.cim_offers 
@@ -71,7 +72,7 @@ offersModel.updateAnyExistingDataQuery = (
       status === "true" ? true : false
     }',of_logo='${
       images_object.logo
-    }',of_share_link='${share_link}',of_updated_by=${2},of_updated_at=now()
+    }',of_share_link='${share_link}',of_updated_by=${2},cat_fk_id=${category_id},of_updated_at=now()
   WHERE of_id = ${id}
   `;
   } else if (images_object?.img) {
@@ -81,7 +82,7 @@ offersModel.updateAnyExistingDataQuery = (
       images_object.img
     }',of_sequence='${sequence}',of_active_status='${
       status === "true" ? true : false
-    }',of_share_link='${share_link}',of_updated_by=${2},of_updated_at=now()
+    }',of_share_link='${share_link}',of_updated_by=${2},cat_fk_id=${category_id},of_updated_at=now()
       WHERE of_id = ${id}
       `;
   } else if (images_object?.logo) {
@@ -91,7 +92,7 @@ offersModel.updateAnyExistingDataQuery = (
       status === "true" ? true : false
     }',of_logo='${
       images_object.logo
-    }',of_share_link='${share_link}',of_updated_by=${2},of_updated_at=now()
+    }',of_share_link='${share_link}',of_updated_by=${2},cat_fk_id=${category_id},of_updated_at=now()
     WHERE of_id = ${id}
     `;
   } else {
@@ -99,7 +100,7 @@ offersModel.updateAnyExistingDataQuery = (
     UPDATE public.cim_offers 
     SET of_name='${name}',of_desc='${desc}',of_sequence='${sequence}',of_active_status='${
       status === "true" ? true : false
-    }',of_share_link='${share_link}',of_updated_by=${2},of_updated_at=now()
+    }',of_share_link='${share_link}',of_updated_by=${2},cat_fk_id=${category_id},of_updated_at=now()
     WHERE of_id = ${id}
     `;
   }
