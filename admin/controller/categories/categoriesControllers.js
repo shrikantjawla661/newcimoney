@@ -20,7 +20,7 @@ categoriesControllerObject.categoriesListUI = async (req, res) => {
       sidebarDataByServer: sideBarData,
       allTr: catColumns.allTr[0],
       displayName: displayName,
-      addEntryUrl: `/categories/add-new-category`,
+      addEntryUrl: `/admin/categories/add-new-category`,
     });
   } else {
     res.render("error/noPermission");
@@ -78,9 +78,11 @@ categoriesControllerObject.categoriesListAjax = async (req, res) => {
 categoriesControllerObject.addNewCategoryUI = async (req, res) => {
   let middleObj = await accessMiddleware.checkAccessPermition(req, 6, "W");
   if (middleObj) {
+    let allOffers = await pool.query(`SELECT * FROM cim_offers`)
     let sideBarData = await commonController.commonSideBarData(req);
     res.render("categories/addNewCategory", {
       sidebarDataByServer: sideBarData,
+      offers:allOffers.rows
     });
   } else {
     res.render("error/noPermission");
@@ -130,9 +132,11 @@ categoriesControllerObject.addNewCategory = async (req, res) => {
 categoriesControllerObject.editExistingCategoryUI = async (req, res) => {
   let middleObj = await accessMiddleware.checkAccessPermition(req, 6, "W");
   if (middleObj) {
+    let allOffers = await pool.query(`SELECT * FROM cim_offers`)
     let sideBarData = await commonController.commonSideBarData(req);
     res.render("categories/editExistingCategory", {
       sidebarDataByServer: sideBarData,
+      offers:allOffers.rows
     });
   } else {
     res.render("error/noPermission");

@@ -20,7 +20,7 @@ offersControllerObject.offersListUI = async (req, res) => {
       sidebarDataByServer: sideBarData,
       allTr: offersColumns.allTr[0],
       displayName: displayName,
-      addEntryUrl: `/offers/add-new-offer-ui`,
+      addEntryUrl: `/admin/offers/add-new-offer-ui`,
     });
   } else {
     res.render("error/noPermission");
