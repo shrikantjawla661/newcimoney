@@ -42,7 +42,7 @@ userAdminObj.userAdminListUI = async function (req, res, next) {
       allTr: uaColumns.allTr[0],
       displayName: displayName,
       selectoptions: uaColumns.selectOptions,
-      addEntryUrl: `/users/add-new-userAdmin`,
+      addEntryUrl: `/admin/users/add-new-userAdmin`,
     });
     // res.render("users/userAdmins", { sidebarDataByServer: sideBarData })
   } else {

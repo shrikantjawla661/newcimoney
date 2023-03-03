@@ -29,6 +29,8 @@ function clearPreview() {
     const sequence = document.querySelector("#sequence").value;
     const status = document.querySelector("#status").value;
     const img = document.querySelector("#img").files[0];
+    const offers = document.getElementById('#multiSelectWrapper').value;
+    console.log(offers)
   
     if (
       name === "" ||
@@ -48,19 +50,19 @@ function clearPreview() {
     form.append("status", status);
     form.append("img", img);
   
-    fetch("/admin/categories/addNewCategory", {
-      method: "POST",
-      body: form,
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        // console.log(res);
-        resetFeilds()
-        alert('Entry has been added successfully!')
-      })
-      .catch((err) => {
-        console.log(err);
-        alert(err.message)
-      });
+    // fetch("/admin/categories/addNewCategory", {
+    //   method: "POST",
+    //   body: form,
+    // })
+    //   .then((res) => res.json())
+    //   .then((res) => {
+    //     // console.log(res);
+    //     resetFeilds()
+    //     alert('Entry has been added successfully!')
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //     alert(err.message)
+    //   });
   }
   

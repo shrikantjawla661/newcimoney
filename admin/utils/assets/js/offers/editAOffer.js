@@ -4,7 +4,7 @@ fetchCurrentOfferToDisplay();
 
 async function fetchCurrentOfferToDisplay() {
   try {
-    const prom = await fetch(`/offers/getSingleOffer/${id}`);
+    const prom = await fetch(`/admin/offers/getSingleOffer/${id}`);
     const data = await prom.json();
     const {
       of_name,
@@ -73,7 +73,7 @@ function editOffer() {
   form.append("logo", logo);
   form.append('category_id',category);
 
-  fetch("/offers/updateAnyExistingOffer/"+id, {
+  fetch("/admin/offers/updateAnyExistingOffer/"+id, {
     method: "PATCH",
     body: form,
   })
