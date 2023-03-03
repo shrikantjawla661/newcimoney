@@ -1,8 +1,11 @@
 
 let router = require('express').Router();
 let adminRout =  require('../admin/routes/homeRoutes');
+let front =  require('../frontend/routes/homeRoutes');
 //		home routes here.....
 router.use('/admin', adminRout);
+router.use('/', front);
+
 
 
 

@@ -104,7 +104,7 @@ app.use(function (req, res, next) {
 
 // setting ejs view here.... 
 app.use(express.static(__dirname + ""))
-app.set('views', [path.join(__dirname, 'admin/view/')])
+app.set('views', [path.join(__dirname, 'frontend/view/') , path.join(__dirname, 'admin/view/')])
 app.set('view engine', 'ejs')
 
 
